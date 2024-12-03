@@ -25,24 +25,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()  // Disable CSRF for stateless authentication
+        http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/payment/**").authenticated()  // Secure /payment/** endpoints
-                .anyRequest().permitAll()  // Allow all other requests without authentication
+                .antMatchers("/api/payment/**").authenticated()
+                .anyRequest().permitAll()
                 .and()
-                .cors()  // Enable CORS for frontend communication
+                .cors()
                 .and()
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);  // Add JWT filter before the Spring Security filter
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
-    // CORS configuration to allow frontend communication
+
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:3000")  // Allow requests from frontend
+                        .allowedOrigins("http://localhost:3002")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);

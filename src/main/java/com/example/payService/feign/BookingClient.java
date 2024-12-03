@@ -7,19 +7,27 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
-@FeignClient(name = "booking-service", url = "http://localhost:8086/api/bookings") // Replace with your actual URL
+/*@FeignClient(name = "booking-service", url = "http://localhost:8086/api/bookings") // Replace with your actual URL
 public interface BookingClient {
 
     @PutMapping("/{bookingId}/status")
     boolean updateBookingStatus(@PathVariable("bookingId") Integer bookingId,
                                 @RequestParam("status") String status,
                                 @RequestHeader("Authorization") String token); // Add Authorization header
-}
+}*/
+@FeignClient(name = "booking-service", url = "http://localhost:8086/api/bookings", configuration = FeignClientConfig.class)
+public interface BookingClient {
+    @PutMapping("/{bookingId}/status")
+    void updateBookingStatus(@PathVariable("bookingId") Integer bookingId,
+                             @RequestParam("status") String status,
+                             @RequestHeader("Authorization") String token);
 
 
 
-    /*// Cancel a booking
+
+
+
     @PutMapping("/{bookingId}/cancel")
     void cancelBooking(@PathVariable Integer bookingId,
-                       @RequestHeader("Authorization") String authorization);*/
-
+                       @RequestHeader("Authorization") String authorization);
+}

@@ -44,17 +44,15 @@ public class PaymentController {
     }
 
 
-    /*@PostMapping("/fail")
-*/
-   /* public ResponseEntity<PaymentResponseDto> cancelSeats(@RequestBody PaymentRequest paymentRequest) {
-        PaymentResponseDto paymentResponseDto = paymentService.cancelPayment(
+    @PostMapping("/fail")
+    public ResponseEntity<PaymentResponseDto> cancelSeats(@RequestBody PaymentRequest paymentRequest,@RequestHeader("Authorization") String token) {
+        PaymentResponseDto paymentResponseDto = paymentService.failedPayment(
                 paymentRequest.getUserId(),
                 paymentRequest.getBookingId(),
-                paymentRequest.getAmount()
+                paymentRequest.getAmount(),token
         );
         return ResponseEntity.status(HttpStatus.CREATED).body(paymentResponseDto);
     }
-*/
 
 
 }

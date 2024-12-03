@@ -11,8 +11,8 @@ import java.util.Date;
 @Component
 public class JwtTokenUtil {
 
-    private String secretKey = "secret"; // The key used to sign the JWT
-    private long validityInMilliseconds = 3600000; // Validity of the token (1 hour)
+    private String secretKey = "secret";
+    private long validityInMilliseconds = 3600000;
 
     // Generate a JWT token for a username
     public String generateToken(String username) {
@@ -24,11 +24,11 @@ public class JwtTokenUtil {
                 .setClaims(claims)
                 .setIssuedAt(now)
                 .setExpiration(validity)
-                .signWith(SignatureAlgorithm.HS256, secretKey)  // Using HS256 algorithm
+                .signWith(SignatureAlgorithm.HS256, secretKey)
                 .compact();
     }
 
-    // Get the username (subject) from the JWT token
+
     public String getUsername(String token) {
         return Jwts.parser()
                 .setSigningKey(secretKey)
@@ -37,7 +37,7 @@ public class JwtTokenUtil {
                 .getSubject();
     }
 
-    // Check if the JWT token has expired
+
     public boolean isTokenExpired(String token) {
         Date expiration = Jwts.parser()
                 .setSigningKey(secretKey)
