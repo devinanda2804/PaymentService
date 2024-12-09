@@ -14,7 +14,7 @@ public class JwtTokenUtil {
     private String secretKey = "secret";
     private long validityInMilliseconds = 3600000;
 
-    // Generate a JWT token for a username
+
     public String generateToken(String username) {
         Claims claims = Jwts.claims().setSubject(username);
         Date now = new Date();

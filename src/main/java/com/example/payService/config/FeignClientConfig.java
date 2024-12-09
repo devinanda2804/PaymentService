@@ -31,7 +31,7 @@ public class FeignClientConfig {
 @Configuration
 public class FeignClientConfig {
 
-    // Feign Request Interceptor for Logging or Dynamic Headers
+
     @Bean
     public RequestInterceptor requestInterceptor() {
         return new RequestInterceptor() {
@@ -43,9 +43,9 @@ public class FeignClientConfig {
         };
     }
 
-    // Feign Logger Level
+
     @Bean
     public Logger.Level feignLoggerLevel() {
-        return Logger.Level.FULL; // Enables detailed logging
+        return Logger.Level.FULL;
     }
 }
