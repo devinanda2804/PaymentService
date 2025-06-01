@@ -34,7 +34,7 @@ public class FeignClientConfig {
         return new RequestInterceptor() {
             @Override
             public void apply(RequestTemplate template) {
-                // For debugging or adding global headers
+
                 System.out.println("Request to: " + template.url());
             }
         };

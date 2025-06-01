@@ -30,6 +30,8 @@ public class Payment {
     @Column(name = "amount", nullable = false)
     private Integer amount;
 
+    private String orderId;
+
     @Column(name = "date", nullable = false)
     private LocalDate date;
 }

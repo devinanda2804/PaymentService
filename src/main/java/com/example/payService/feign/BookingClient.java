@@ -17,17 +17,20 @@ public interface BookingClient {
 }*/
 @FeignClient(name = "booking-service", url = "http://localhost:8086/api/bookings", configuration = FeignClientConfig.class)
 public interface BookingClient {
+
     @PutMapping("/{bookingId}/status")
     void updateBookingStatus(@PathVariable("bookingId") Integer bookingId,
                              @RequestParam("status") String status,
                              @RequestHeader("Authorization") String token);
 
+    @PutMapping("/{bookingId}/seats")
+    void updateSeats(@PathVariable("bookingId") Integer bookingId,
+                     @RequestParam("available") boolean available,
+                     @RequestHeader("Authorization") String token);
 
 
-
-
-
+/*
     @PutMapping("/{bookingId}/cancel")
     void cancelBooking(@PathVariable Integer bookingId,
-                       @RequestHeader("Authorization") String authorization);
+                       @RequestHeader("Authorization") String authorization);*/
 }
